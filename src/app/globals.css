@@ -1,4 +1,25 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0C0D10;
+  --foreground: #FAFAFA;
+  --primary: #B488F2;
+  --color-text: #FFFFFF;
+  --radiant-gradient: radial-gradient(circle, #222737, #0C0D10);
+  --text-heading-1: 32px;
+  --text-heading-2: 28px;
+  --text-heading-3: 24px;
+  --text-heading-4: 22px;
+  --text-heading-5: 20px;
+  --text-heading-6: 18px;
+  --text-body: 16px;
+  --text-caption: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
 }
