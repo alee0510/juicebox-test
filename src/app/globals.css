@@ -2,6 +2,10 @@
   --background: #0C0D10;
   --foreground: #FAFAFA;
   --primary: #B488F2;
+  --secondary: #FFD700;
+  --danger: #FF0000;
+  --success: #00FF00;
+  --warning: #FFA500;
   --color-text: #FFFFFF;
   --radiant-gradient: radial-gradient(circle, #222737, #0C0D10);
   --text-heading-1: 32px;
@@ -22,4 +26,5 @@
 
 body {
   background-color: var(--background);
+  overflow: hidden;
 }
