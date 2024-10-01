@@ -1,9 +1,12 @@
 .container {
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     font-family: var(--font-sohne);
     font-size: var(--text-body);
     font-weight: 400;
     border-radius: 19px;
+    height: 60px;
+    cursor: pointer;
+    color: var(--background);
 }
 
 /* @color scheme */
@@ -33,9 +36,41 @@
 }
 
 /* @button type */
-.filled {
+.filled-default, 
+.filled-primary, 
+.filled-secondary, 
+.filled-warning, 
+.filled-success, 
+.filled-danger {
     border: none;
 }
-.outlined {
-    border: 1px solid;
+.outlined-default {
+    border: 1px solid var(--foreground);
+    background-color: transparent;
+    color: var(--foreground);
+}
+.outlined-primary {
+    border: 1px solid var(--primary);
+    background-color: transparent;
+    color: var(--primary);
+}
+.outlined-secondary {
+    border: 1px solid var(--secondary);
+    background-color: transparent;
+    color: var(--secondary);
+}
+.outlined-warning {
+    border: 1px solid var(--warning);
+    background-color: transparent;
+    color: var(--warning);
+}
+.outlined-success {
+    border: 1px solid var(--success);
+    background-color: transparent;
+    color: var(--success);
+}
+.outlined-danger {
+    border: 1px solid var(--danger);
+    background-color: transparent;
+    color: var(--danger);
 }
