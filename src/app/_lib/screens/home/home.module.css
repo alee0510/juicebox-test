@@ -1,0 +1,30 @@
+/* @section-1 layout */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  max-height: 70%;
+  padding: 10% 5%;
+}
+.main-content p{
+  width: 70%;
+  font-family: var(--font-sohne);
+  font-size: 12px;
+  font-weight: 400;
+}
+.align-right {
+  align-self: flex-end;
+  text-align: right;
+}
+.content-heading {
+  font-family: var(--font-bagoss-trial);
+  font-size: var(--text-heading-2);
+  text-align: center;
+  font-weight: 400;
+}
+.gradient-text {
+  background: linear-gradient(90deg, #FABBFF, #B179FF, #6DDDFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
