@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, type ReactNode } from "react";
 import clsx from "clsx";
-import styles from "./styles.module.css";
+import styles from "./button.module.css";
 
 // @button type
 export type ButtonType = "filled" | "outlined";
