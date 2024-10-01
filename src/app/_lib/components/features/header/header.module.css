@@ -18,3 +18,11 @@
     background-color: rgba(255, 255, 255, 0.05);
     cursor: pointer;
 }
+
+/* @logo */
+.logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
