@@ -6,7 +6,6 @@ import "./globals.css";
 
 // @components
 import Header from "@/app/_lib/components/features/header";
-import LottieAnimation from "@/app/_lib/components/features/lottie";
 
 export default function RootLayout({
   children,
@@ -18,7 +17,6 @@ export default function RootLayout({
       <body className={`${fontVariables}`}>
         <main>
           <Header />
-          <LottieAnimation />
           {children}
         </main>
       </body>
