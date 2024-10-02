@@ -16,14 +16,21 @@
   --text-heading-6: 18px;
   --text-body: 16px;
   --text-caption: 12px;
+  --swiper-pagination-color: var(--primary);
+  --swiper-pagination-bullet-inactive-color: var(--color-text);
+  --swiper-pagination-bullet-inactive-opacity: 0.2;
+  --swiper-pagination-bullet-opacity: 1;
+
 }
 
+/* @global rules */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* @body */
 body {
   background-color: var(--background);
   overflow: hidden;

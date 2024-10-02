@@ -17,6 +17,9 @@
   justify-content: center;
   padding: 7%;
 }
+.lottie {
+  transform: scale(1);
+}
 
 /* @section layout */
 .section {
@@ -32,7 +35,6 @@
   z-index: 3;
 }
 .section-2 {
-  background-color: yellow;
   z-index: 2;
 }
 .section-3 {

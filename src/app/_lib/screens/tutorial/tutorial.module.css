@@ -1,0 +1,29 @@
+/* @section-2 layout */
+.swiper-container {
+  flex: 1;
+  position: relative;
+}
+.swiper {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  padding: 5%;
+  color: var(--color-text);
+  height: 200px;
+  width: 100%;
+}
+.swiper-slide h2 {
+  font-size: var(--text-heading-4);
+  font-family: var(--font-bagoss-trial);
+  font-weight: 400;
+  text-align: center;
+}
+.transparent {
+  opacity: 0.5;
+}
