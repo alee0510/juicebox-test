@@ -1,7 +1,6 @@
 import React from "react";
 
 // @components & styles
-import clsx from "clsx";
 import global from "@/app/page.module.css";
 import styles from "@/app/form/page.module.css";
 
@@ -15,7 +14,7 @@ export default function LayoutTemplate({
 }): JSX.Element {
   return (
     <React.Fragment>
-      <div className={clsx(global["content-container"], styles["label-context"])}>
+      <div className={styles["label-context"]}>
         <h5>{info}</h5>
       </div>
       <div className={global["content-container"]}>{children}</div>

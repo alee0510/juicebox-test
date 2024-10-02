@@ -1,7 +1,7 @@
 "use client";
 
 // @components & hooks
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -26,14 +26,26 @@ export default function TutorialPage(): JSX.Element {
   const router = useRouter();
   const swiperRef = useRef<SwiperType | null>(null);
   const container = useRef<HTMLDivElement>(null);
-  const { contextSafe } = useGSAP({ scope: container });
   const { timeline, lottieContainer, lottieComponent, playLottie } = useTransition();
 
   // @side-effect
-  useEffect(() => {
+  useGSAP(() => {
     if (typeof window !== undefined && swiperRef.current) {
       const current = parseInt(window.location.hash.split("#")[1]) || 0;
-      if (isNaN(current)) return;
+      if (current === 0) {
+        gsap.to(lottieContainer?.current || "", {
+          background: "radial-gradient(circle at center,#222737, #0C0D10)",
+          ease: "power4.inOut",
+          duration: 0.5,
+        });
+      }
+      if (current === 1) {
+        gsap.to(lottieContainer?.current || "", {
+          background: "radial-gradient(circle at center top,#222737, #0C0D10)",
+          ease: "power4.inOut",
+          duration: 0.5,
+        });
+      }
       swiperRef.current.slideTo(current);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -73,13 +85,15 @@ export default function TutorialPage(): JSX.Element {
   });
 
   // @event
-  const onContinue = contextSafe(() => {
+  const onContinue = () => {
     if (typeof window !== "undefined") {
       const current = parseInt(window.location.hash.split("#")[1]) || 0;
-      if (current >= 2) return router.push("/form/name");
+      if (current === 2) {
+        return router.push("/form/name");
+      }
       router.push(`#${current + 1}`);
     }
-  });
+  };
 
   return (
     <section ref={container} className={global["section"]}>
