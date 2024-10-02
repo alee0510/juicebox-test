@@ -2,13 +2,14 @@
 .label-context {
   flex: 1
 }
-.heading-context {
+.label-context h5 {
   height: 40%;
   padding: 5%;
-  text-align: center;
   display: flex;
-  align-items: flex-end;
   font-family: var(--font-bagoss-trial);
   font-size: var(--text-heading-5);
   font-weight: 400;
+  text-align: center;
+  justify-content: center;
+  margin-top: calc(10% + 86px);
 }

@@ -1,10 +1,10 @@
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5%;
     height: 86px;
     width: 100%;
-    background-color: transparent;
     z-index: 10;
     position: absolute;
 }
@@ -17,6 +17,12 @@
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.05);
     cursor: pointer;
+}
+
+/* @add bounce animation */
+.icon-button:active {
+    transform: scale(0.6);
+    transition: 0.4s ease-in;
 }
 
 /* @logo */

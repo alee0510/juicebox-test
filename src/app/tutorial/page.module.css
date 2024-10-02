@@ -9,14 +9,14 @@
   bottom: 0;
 }
 .swiper-slide {
+  height: 200px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
   padding: 5%;
+  font-size: 18px;
   color: var(--color-text);
-  height: 200px;
-  width: 100%;
 }
 .swiper-slide h2 {
   font-size: var(--text-heading-4);
