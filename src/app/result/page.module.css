@@ -13,6 +13,6 @@
     font-size: var(--text-heading-5);
     font-weight: 400;
     padding: 5%;
-    top: 100px;
+    top: calc(10% + 86px);
     position: relative;
   }

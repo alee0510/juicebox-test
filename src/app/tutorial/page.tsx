@@ -50,25 +50,29 @@ export default function TutorialPage(): JSX.Element {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
+
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { duration: 0.3 }, paused: true });
     tl.add(gsap.fromTo(container.current, { opacity: 0 }, { opacity: 1, ease: "power4.inOut" }));
-    tl.add(
-      gsap.fromTo(
-        lottieContainer?.current || "",
-        { background: "radial-gradient(circle at center top,#222737, #0C0D10)" },
-        { background: "radial-gradient(circle at center,#222737, #0C0D10)", ease: "power4.inOut" }
-      )
-    );
-    tl.add(
-      gsap.to(lottieComponent?.current || "", {
-        scale: 0.5,
-        translateY: "-5%",
-        ease: "power4.inOut",
-        onComplete: playLottie,
-      })
-    );
+    if (typeof window !== "undefined" && window.location.hash.split("#")[1] === undefined) {
+      tl.add(
+        gsap.fromTo(
+          lottieContainer?.current || "",
+          { background: "radial-gradient(circle at center top,#222737, #0C0D10)" },
+          { background: "radial-gradient(circle at center,#222737, #0C0D10)", ease: "power4.inOut" }
+        )
+      );
+      tl.add(
+        gsap.to(lottieComponent?.current || "", {
+          scale: 0.5,
+          translateY: "-5%",
+          ease: "power4.inOut",
+          onComplete: playLottie,
+        })
+      );
+    }
     tl.play();
+
     timeline?.add(
       gsap.to(lottieComponent?.current || "", {
         scale: 1,

@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 // @component template & hooks
 import Input from "@/app/_lib/components/ui/input";
 import LayoutTemplate from "@/app/form/component.template";
-// import { useTransition } from "@/app/_lib/context/transition";
+import { useTransition } from "@/app/_lib/context/transition";
 import useSearchQuery from "@/app/_lib/hooks/useSearchQuery";
 import global from "@/app/page.module.css";
 
@@ -18,12 +18,28 @@ export default function FormScreen(): JSX.Element {
   const query = useSearchQuery();
   const router = useRouter();
   const container = useRef<HTMLDivElement>(null);
-  // const { lottieComponent, playLottie } = useTransition();
+  const { lottieComponent, playLottie } = useTransition();
 
   // @side-effect
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { duration: 0.3 }, paused: true });
     tl.add(gsap.fromTo(container.current, { opacity: 0 }, { opacity: 1, ease: "power4.inOut" }));
+    tl.add(
+      gsap.fromTo(
+        lottieComponent?.current || "",
+        {
+          scale: 0.5,
+          translateY: "-5%",
+        },
+        {
+          scale: 0.15,
+          translateY: "-27%",
+          ease: "power4.inOut",
+          onComplete: playLottie,
+        }
+      )
+    );
+    tl.play();
     tl.play();
   });
 

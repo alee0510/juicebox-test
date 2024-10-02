@@ -18,7 +18,7 @@ export default function FormScreen(): JSX.Element {
   const query = useSearchQuery();
   const router = useRouter();
   const container = useRef<HTMLDivElement>(null);
-  const { timeline, lottieComponent, playLottie } = useTransition();
+  const { lottieComponent, playLottie } = useTransition();
 
   // @side-effect
   useGSAP(() => {
