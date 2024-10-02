@@ -56,13 +56,7 @@ export default function TutorialPage(): JSX.Element {
 }
 
 // @slide item
-export function SlideItem({
-  title,
-  transparent,
-}: {
-  title: string;
-  transparent: string;
-}): JSX.Element {
+function SlideItem({ title, transparent }: { title: string; transparent: string }): JSX.Element {
   return (
     <div className={styles["swiper-slide"]}>
       <h2>
