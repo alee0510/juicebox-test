@@ -5,13 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "@/app/_lib/components/features/header/header.module.css";
 
-// @props
-type Props = {
-  onBack?: () => void;
-};
-
 // @component
-export default function Header({ onBack }: Props): JSX.Element {
+export default function Header(): JSX.Element {
   // @hooks
   const pathname = usePathname();
   const router = useRouter();
@@ -19,7 +14,13 @@ export default function Header({ onBack }: Props): JSX.Element {
   return (
     <header className={styles.header}>
       {(pathname !== "/" && (
-        <button aria-label="back-button" className={styles["icon-button"]} onClick={onBack}>
+        <button
+          aria-label="back-button"
+          className={styles["icon-button"]}
+          onClick={() => {
+            router.back();
+          }}
+        >
           <Image src="/icons/arrow-left.svg" alt="back" priority width={20} height={20} />
         </button>
       )) || <div className={styles["icon-button"]} style={{ opacity: 0 }}></div>}

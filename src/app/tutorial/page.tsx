@@ -1,8 +1,8 @@
 "use client";
 
 // @components & hooks
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
+import { useParams, useRouter } from "next/navigation";
 import { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
@@ -12,30 +12,32 @@ import Button from "@/app/_lib/components/ui/button";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import styles from "./page.module.css";
+import styles from "@/app/tutorial/page.module.css";
 import global from "@/app/page.module.css";
 
 // @main component
 export default function TutorialPage(): JSX.Element {
-  // @state
+  // @hooks
+  const params = useParams();
   const router = useRouter();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [swiper, setSwiper] = useState<SwiperType | null>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
-  // @effects
+  // @side-effect
   useEffect(() => {
-    if (swiper && currentSlide <= 2) {
-      swiper?.slideTo(currentSlide, 500, false);
+    if (typeof window !== undefined && swiperRef.current) {
+      const current = parseInt(window.location.hash.split("#")[1]) || 0;
+      if (isNaN(current)) return;
+      swiperRef.current.slideTo(current);
     }
-  }, [currentSlide, swiper]);
+  }, [params]);
 
-  // @events
-  const onButtonContinue = () => {
-    if (currentSlide === 2) {
-      router.push("/form/name");
-      return;
+  // @event
+  const onContinue = () => {
+    if (typeof window !== "undefined") {
+      const current = parseInt(window.location.hash.split("#")[1]) || 0;
+      if (current >= 2) return router.push("/form/name");
+      router.push(`#${current + 1}`);
     }
-    setCurrentSlide((prev) => prev + 1);
   };
 
   return (
@@ -46,7 +48,7 @@ export default function TutorialPage(): JSX.Element {
             modules={[Pagination, Navigation]}
             pagination
             onSwiper={(swiper) => {
-              setSwiper(swiper);
+              swiperRef.current = swiper;
             }}
           >
             <SwiperSlide>
@@ -71,12 +73,7 @@ export default function TutorialPage(): JSX.Element {
         </div>
       </div>
       <div className={global["content-container"]}>
-        <Button
-          title="Continue"
-          name="continue-button"
-          type="outlined"
-          onClick={onButtonContinue}
-        />
+        <Button title="Continue" name="continue-button" type="outlined" onClick={onContinue} />
       </div>
     </section>
   );
