@@ -1,21 +1,27 @@
-import type { Metadata } from "next";
+"use client";
+
+// @fonts and styles
 import { fontVariables } from "@/app/fonts";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Juicebox",
-  description: "demo test for juicebox",
-};
+// @components
+import Header from "@/app/_lib/components/features/header";
+import LottieAnimation from "@/app/_lib/components/features/lottie";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log(fontVariables);
   return (
     <html lang="en">
-      <body className={`${fontVariables}`}>{children}</body>
+      <body className={`${fontVariables}`}>
+        <main>
+          <Header />
+          <LottieAnimation />
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
