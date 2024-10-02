@@ -1,25 +1,54 @@
 "use client";
 
 // @components & hooks
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import Button from "@/app/_lib/components/ui/button";
 
 // @styles
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 import styles from "./page.module.css";
 import global from "@/app/page.module.css";
 
 // @main component
 export default function TutorialPage(): JSX.Element {
+  // @state
   const router = useRouter();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
+
+  // @effects
+  useEffect(() => {
+    if (swiper && currentSlide <= 2) {
+      swiper?.slideTo(currentSlide, 500, false);
+    }
+  }, [currentSlide, swiper]);
+
+  // @events
+  const onButtonContinue = () => {
+    if (currentSlide === 2) {
+      router.push("/form/name");
+      return;
+    }
+    setCurrentSlide((prev) => prev + 1);
+  };
+
   return (
     <section className={global["section"]}>
       <div className={styles["swiper-container"]}>
         <div className={styles["swiper"]}>
-          <Swiper modules={[Pagination]} pagination>
+          <Swiper
+            modules={[Pagination, Navigation]}
+            pagination
+            onSwiper={(swiper) => {
+              setSwiper(swiper);
+            }}
+          >
             <SwiperSlide>
               <SlideItem
                 title="Professionals around the world shared how they feel abo"
@@ -46,9 +75,7 @@ export default function TutorialPage(): JSX.Element {
           title="Continue"
           name="continue-button"
           type="outlined"
-          onClick={() => {
-            router.back();
-          }}
+          onClick={onButtonContinue}
         />
       </div>
     </section>
