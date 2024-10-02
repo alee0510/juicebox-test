@@ -60,8 +60,8 @@ export function SlideItem({
   title,
   transparent,
 }: {
-  title: String;
-  transparent: String;
+  title: string;
+  transparent: string;
 }): JSX.Element {
   return (
     <div className={styles["swiper-slide"]}>
