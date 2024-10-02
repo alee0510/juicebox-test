@@ -2,7 +2,9 @@
 
 // @fonts and styles
 import React, { useRef, createContext, useContext, useState } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { LottieRefCurrentProps } from "lottie-react";
 import LottieAnimation from "@/app/_lib/components/features/lottie";
 
@@ -16,10 +18,12 @@ export const TransitionContext = createContext({
 export const useTransition = () => useContext(TransitionContext);
 
 // @manage transitions
+gsap.registerPlugin(useGSAP);
 export default function TransitionProvider({ children }: { children: React.ReactNode }) {
   // @hooks
+  const pathname = usePathname();
   const [timeline] = useState<gsap.core.Timeline | null>(() =>
-    gsap.timeline({ defaults: { duration: 0.5, paused: true } })
+    gsap.timeline({ paused: true, defaults: { duration: 1 } })
   );
   const transition = useRef<HTMLDivElement>(null);
   const lottie = useRef<LottieRefCurrentProps | null>(null);
@@ -33,6 +37,13 @@ export default function TransitionProvider({ children }: { children: React.React
       lottie.current.goToAndPlay(1);
     }
   };
+
+  // @handle exit transition
+  useGSAP(() => {
+    timeline?.play().then(() => {
+      timeline.pause().clear();
+    });
+  }, [pathname]);
 
   return (
     <TransitionContext.Provider

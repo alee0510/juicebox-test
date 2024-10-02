@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-// import { useTransition } from "@/app/_lib/context/transition";
+import { useTransition } from "@/app/_lib/context/transition";
 import Button from "@/app/_lib/components/ui/button";
 import styles from "./page.module.css";
 
@@ -15,6 +15,7 @@ export default function HomePage(): JSX.Element {
   // @hooks
   const router = useRouter();
   const container = useRef<HTMLDivElement>(null);
+  const { playLottie } = useTransition();
 
   // @side-effect
   useGSAP(() => {
@@ -24,7 +25,8 @@ export default function HomePage(): JSX.Element {
       {
         opacity: 1,
         ease: "power4.inOut",
-        duration: 1,
+        duration: 0.5,
+        onComplete: playLottie,
       }
     );
   });

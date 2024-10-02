@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useTransition } from "@/app/_lib/context/transition";
 import Button from "@/app/_lib/components/ui/button";
 
 // @styles
@@ -25,6 +26,8 @@ export default function TutorialPage(): JSX.Element {
   const router = useRouter();
   const swiperRef = useRef<SwiperType | null>(null);
   const container = useRef<HTMLDivElement>(null);
+  const { contextSafe } = useGSAP({ scope: container });
+  const { timeline, lottieContainer, lottieComponent, playLottie } = useTransition();
 
   // @side-effect
   useEffect(() => {
@@ -36,25 +39,47 @@ export default function TutorialPage(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
   useGSAP(() => {
-    gsap.fromTo(
-      container.current,
-      { opacity: 0 },
-      {
-        opacity: 1,
+    const tl = gsap.timeline({ defaults: { duration: 0.3 }, paused: true });
+    tl.add(gsap.fromTo(container.current, { opacity: 0 }, { opacity: 1, ease: "power4.inOut" }));
+    tl.add(
+      gsap.fromTo(
+        lottieContainer?.current || "",
+        { background: "radial-gradient(circle at center top,#222737, #0C0D10)" },
+        { background: "radial-gradient(circle at center,#222737, #0C0D10)", ease: "power4.inOut" }
+      )
+    );
+    tl.add(
+      gsap.to(lottieComponent?.current || "", {
+        scale: 0.5,
+        translateY: "-5%",
         ease: "power4.inOut",
-        duration: 1,
-      }
+        onComplete: playLottie,
+      })
+    );
+    tl.play();
+    timeline?.add(
+      gsap.to(lottieComponent?.current || "", {
+        scale: 1,
+        translateY: 0,
+        ease: "power4.inOut",
+      })
+    );
+    timeline?.add(
+      gsap.to(lottieContainer?.current || "", {
+        background: "radial-gradient(circle at center top,#222737, #0C0D10)",
+        ease: "power4.inOut",
+      })
     );
   });
 
   // @event
-  const onContinue = () => {
+  const onContinue = contextSafe(() => {
     if (typeof window !== "undefined") {
       const current = parseInt(window.location.hash.split("#")[1]) || 0;
       if (current >= 2) return router.push("/form/name");
       router.push(`#${current + 1}`);
     }
-  };
+  });
 
   return (
     <section ref={container} className={global["section"]}>
