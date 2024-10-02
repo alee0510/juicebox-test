@@ -25,7 +25,7 @@ export default function FormScreen(): JSX.Element {
           }}
           onSubmit={() => {
             if (!query.get("email")) return;
-            router.push("/result?name=" + query.get("first_name") + "&email=" + query.get("email"));
+            router.push("/result?name=" + query.get("name") + "&email=" + query.get("email"));
           }}
         />
       </LayoutTemplate>

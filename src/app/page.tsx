@@ -1,15 +1,36 @@
 "use client";
 
 // @components & hooks
+import { useRef } from "react";
 import { useRouter } from "next/navigation";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+// import { useTransition } from "@/app/_lib/context/transition";
 import Button from "@/app/_lib/components/ui/button";
 import styles from "./page.module.css";
 
 // @main component
+gsap.registerPlugin(useGSAP);
 export default function HomePage(): JSX.Element {
+  // @hooks
   const router = useRouter();
+  const container = useRef<HTMLDivElement>(null);
+
+  // @side-effect
+  useGSAP(() => {
+    gsap.fromTo(
+      container.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        ease: "power4.inOut",
+        duration: 1,
+      }
+    );
+  });
+
   return (
-    <section className={styles["section"]}>
+    <section ref={container} className={styles["section"]}>
       <div className={styles["info-container"]}>
         <p>WA businesses feel confident about future growth</p>
         <p className={styles["align-right"]}>AI cant replace creativity</p>
