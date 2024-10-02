@@ -16,7 +16,7 @@ export default function LayoutTemplate({
   return (
     <React.Fragment>
       <div className={clsx(global["content-container"], styles["label-context"])}>
-        <h5 className={styles["heading-context"]}>{info}</h5>
+        <h5>{info}</h5>
       </div>
       <div className={global["content-container"]}>{children}</div>
     </React.Fragment>
