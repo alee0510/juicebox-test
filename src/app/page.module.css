@@ -18,7 +18,8 @@
   padding: 7%;
 }
 .lottie {
-  transform: scale(1);
+  /* transform: translateY(-650px); */
+  scale: 0.15;
 }
 
 /* @section layout */
@@ -38,6 +39,10 @@
   z-index: 2;
 }
 .section-3 {
-  background-color: magenta;
   z-index: 1;
+  display: flex;
+}
+.section-4 {
+  z-index: 0;
+  display: flex;
 }

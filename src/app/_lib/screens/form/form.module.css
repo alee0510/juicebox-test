@@ -1,0 +1,14 @@
+/* @section-3 layout */
+.label-context {
+  flex: 1
+}
+.heading-context {
+  height: 40%;
+  padding: 5%;
+  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  font-family: var(--font-bagoss-trial);
+  font-size: var(--text-heading-5);
+  font-weight: 400;
+}
