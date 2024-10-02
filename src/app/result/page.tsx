@@ -12,7 +12,6 @@ export default function ResultScreen(): JSX.Element {
   // @hooks
   const query = useSearchQuery();
   const name = query.get("name") || "<Name/>";
-  const email = query.get("email") || "<Email/>";
 
   return (
     <section className={global["section"]}>
