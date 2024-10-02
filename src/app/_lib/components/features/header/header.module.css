@@ -19,6 +19,12 @@
     cursor: pointer;
 }
 
+/* @add bounce animation */
+.icon-button:active {
+    transform: scale(0.6);
+    transition: 0.4s ease-in;
+}
+
 /* @logo */
 .logo {
     flex: 1;
