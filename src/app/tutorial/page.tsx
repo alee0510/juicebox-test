@@ -6,6 +6,8 @@ import { useParams, useRouter } from "next/navigation";
 import { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import Button from "@/app/_lib/components/ui/button";
 
 // @styles
@@ -16,11 +18,13 @@ import styles from "@/app/tutorial/page.module.css";
 import global from "@/app/page.module.css";
 
 // @main component
+gsap.registerPlugin(useGSAP);
 export default function TutorialPage(): JSX.Element {
   // @hooks
   const params = useParams();
   const router = useRouter();
   const swiperRef = useRef<SwiperType | null>(null);
+  const container = useRef<HTMLDivElement>(null);
 
   // @side-effect
   useEffect(() => {
@@ -29,7 +33,19 @@ export default function TutorialPage(): JSX.Element {
       if (isNaN(current)) return;
       swiperRef.current.slideTo(current);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
+  useGSAP(() => {
+    gsap.fromTo(
+      container.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        ease: "power4.inOut",
+        duration: 1,
+      }
+    );
+  });
 
   // @event
   const onContinue = () => {
@@ -41,7 +57,7 @@ export default function TutorialPage(): JSX.Element {
   };
 
   return (
-    <section className={global["section"]}>
+    <section ref={container} className={global["section"]}>
       <div className={styles["swiper-container"]}>
         <div className={styles["swiper"]}>
           <Swiper
